@@ -62,7 +62,6 @@ model.add(Dense(4, activation = 'relu'))
 model.add(Dense(4, activation = 'relu'))
 model.add(Dense(4, activation = 'relu'))
 
-
 # Output layer
 model.add(Dense(1, activation = 'sigmoid')) # Sigmoid because of binary classification
 
