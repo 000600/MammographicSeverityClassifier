@@ -20,12 +20,13 @@ df = pd.read_csv('MammographicDataset.csv')
 df = pd.DataFrame(df)
 df.head()
 
+# Scale x values
 ss = StandardScaler()
-
 for col in df.columns:
   if col != 'Severity':
     df[col] = ss.fit_transform(df[[col]])
 
+# Assign x and y values
 y = list(df.pop('Severity'))
 x = []
 for rows in df.values.tolist():
