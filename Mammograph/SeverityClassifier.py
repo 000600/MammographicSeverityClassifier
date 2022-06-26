@@ -40,7 +40,6 @@ x, y = smote.fit_resample(x, y)
 
 # Divide the x and y values into three sets: train, test, and validation
 x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 1)
-#x_test, x_val, y_test, y_val = train_test_split(x_test, y_test, test_size = 0.5, random_state = 1)
 
 # Get input shape
 input_shape = len(x[0])
