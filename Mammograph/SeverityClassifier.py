@@ -34,16 +34,13 @@ for rows in df.values.tolist():
     row.append(float(element))
   x.append(row)
 
-print(x)
-print(y)
-  
 # Balance dataset (make sure there are an even representation of instances with label 1 and label 0)
 smote = SMOTE()
 x, y = smote.fit_resample(x, y)
 
 # Divide the x and y values into three sets: train, test, and validation
 x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 1)
-x_test, x_val, y_test, y_val = train_test_split(x_test, y_test, test_size = 0.5, random_state = 1)
+#x_test, x_val, y_test, y_val = train_test_split(x_test, y_test, test_size = 0.5, random_state = 1)
 
 # Get input shape
 input_shape = len(x[0])
@@ -59,7 +56,12 @@ model.add(BatchNormalization())
 model.add(Dense(6, activation = 'relu', input_shape = [input_shape])) # Input layer
 
 # Hidden layers
-model.add(Dense(32, activation = 'relu'))
+model.add(BatchNormalization())
+model.add(Dense(4, activation = 'relu'))
+model.add(Dense(4, activation = 'relu'))
+model.add(Dense(4, activation = 'relu'))
+model.add(Dense(4, activation = 'relu'))
+
 
 # Output layer
 model.add(Dense(1, activation = 'sigmoid')) # Sigmoid because of binary classification
@@ -70,8 +72,8 @@ early_stopping = EarlyStopping(min_delta = 0.001, patience = 10, restore_best_we
 
 # Train model and store training history
 epochs = 100
-batch_size = 64
-history = model.fit(x_train, y_train, epochs = epochs, validation_data = (x_val, y_val), batch_size = batch_size) # To add callbacks add 'callbacks = [early_stopping]'
+batch_size = 32
+history = model.fit(x, y, epochs = epochs, validation_data = (x_test, y_test), batch_size = batch_size) # To add callbacks add 'callbacks = [early_stopping]'
 
 # Visualize  loss and validation loss
 history_dict = history.history
@@ -113,5 +115,3 @@ print(f'\nTest accuracy: {test_acc * 100}%')
 predict = model.predict(x_test)
 predictions = [1.0 if j > 0.5 else 0 for j in predict] # Adjust values for classification report
 print("\n", classification_report(y_test, predictions))
-
-print(len(x_train), len(x_val), len(x_test))
