@@ -16,7 +16,7 @@ from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 
 # Load dataset
-df = pd.read_csv('MammographicDataset.csv')
+df = pd.read_csv('mammograph_dataset.csv')
 df = pd.DataFrame(df)
 df.head()
 
