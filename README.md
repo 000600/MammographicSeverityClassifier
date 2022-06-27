@@ -30,8 +30,8 @@ The dataset can be found at this link: https://www.kaggle.com/datasets/overrated
 
 Mass shape, mass margin, and mass density are BI-RADS attributes. Note that the initial dataset is unbalanced (this statistic can be found on the data's webpage); it contains 516 instances of benign lesions (encoded as 0's in the model) and 445 instances of malignant lesions (encoded as 1's in the model). This issue is solved within the classifier using SMOTE, which oversamples the minority class within the dataset.
 
-## Application
-The neural network, SVM, and other models in this project could hypothetically advise a physician on whether or not to perform a breast biopsy on patient. Misinterpretation of mammographs is the primary cause of unnecessary breast biopsies; biospies that result in benign outcomes. By predicting the severity of a lesion, the models in this project can hypothetically help physicians discern if they should conduct a breast biopsy on a patient; if the models predict values close to 0, they suggest the lesion is likely benign and thus not worthy of a complete biopsy, while if they predict values close to 1, they suggest the lesion is likely malignant and thus worthy of a biopsy.
+## Potential Applications
+The neural network, SVM, and other models in this project could hypothetically advise a physician on whether or not to perform a breast biopsy on patient. Misinterpretation of mammographs is the primary cause of unnecessary breast biopsies (biospies that result in benign outcomes). By predicting the severity of a lesion, the models in this project can hypothetically help physicians discern if they should conduct a breast biopsy on a patient; if the models predict values close to 0, they suggest the lesion is likely benign and thus not worthy of a complete biopsy, while if they predict values close to 1, they suggest the lesion is likely malignant and thus worthy of a biopsy.
 
 Note that I do ***not*** recommend or advise the use of any models here in actual medical practice or use.  
 
