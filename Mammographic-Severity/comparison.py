@@ -26,7 +26,7 @@ test_accuracy = []
 train_accuracy = []
 
 # Load dataset
-df = pd.read_csv('MammographicDataset.csv')
+df = pd.read_csv('mammograph_dataset.csv')
 df = pd.DataFrame(df)
 df.head()
 
@@ -208,11 +208,11 @@ print("Training Accuracy :", knn_train_acc)
 knn_cr = classification_report(knn_pred, y_test)
 print(knn_cr)
 
+# Create bar graph to illustrate training and test accuracy across different models
 n_groups = 6
 objects = ('Neural Network', 'Decision Tree', 'Logistic Regression', 'Random Forest', 'SVM', 'KNN')
 
-# Create plot
-plt.figure(figsize = (10, 7))
+plt.figure(figsize = (10, 7)) # Adjust figure size so that x-axis labels don't overlap
 index = np.arange(n_groups)
 bar_width = 0.35
 opacity = 0.8
