@@ -199,8 +199,8 @@ test_accuracy.append(knn_acc)
 knn_train_acc = knn.score(x_train, y_train)
 train_accuracy.append(knn_train_acc)
 
-print("\nK-Nearest Neigjbor Classifier")
-print("=============================")
+print("\nK-Nearest-Neighbor Classifier")
+print("==============================")
 print("Testing Accuracy :", knn_acc)
 print("Training Accuracy :", knn_train_acc)
 
