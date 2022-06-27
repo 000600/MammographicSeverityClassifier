@@ -218,7 +218,7 @@ bar_width = 0.35
 opacity = 0.8
 
 bar1 = plt.bar(index, test_accuracy, bar_width, alpha = opacity, color = 'blue', label = 'Test Accuracy')
-bar22 = plt.bar(index + bar_width, train_accuracy, bar_width, alpha = opacity, color = 'orange', label = 'Train Accuracy')
+bar2 = plt.bar(index + bar_width, train_accuracy, bar_width, alpha = opacity, color = 'orange', label = 'Train Accuracy')
 
 plt.xlabel('Model')
 plt.ylabel('Accuracy')
