@@ -91,13 +91,15 @@ train_loss, train_acc = model.evaluate(x_train, y_train, verbose = 0)
 test_accuracy.append(float(test_acc))
 train_accuracy.append(float(train_acc))
 
-print(f'\nTesting Accuracy: {test_acc * 100}%')
+print("Neural Network")
+print("==============")
+print(f'Testing Accuracy: {test_acc * 100}%')
 print(f'Training Accuracy: {train_acc * 100}%')
 
 # View performance metrics
 predict = model.predict(x_test)
 predictions = [1.0 if j > 0.5 else 0 for j in predict] # Adjust values for classification report
-print("\n", classification_report(y_test, predictions))
+print(classification_report(y_test, predictions))
 
 ## Decision Tree Classifier
 dtc = DecisionTreeClassifier()
