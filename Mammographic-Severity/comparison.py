@@ -1,17 +1,16 @@
 # Imports
 import tensorflow as tf
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dense, BatchNormalization, Dropout
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.callbacks import EarlyStopping
-from tensorflow.keras.layers import Dropout
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.layers import BatchNormalization
-from tensorflow.keras.losses import SparseCategoricalCrossentropy
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.preprocessing import StandardScaler
+from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 from sklearn.tree import DecisionTreeClassifier
