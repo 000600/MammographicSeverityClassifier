@@ -54,7 +54,6 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 1)
 # Get input shape
 input_shape = len(x[0])
 
-
 ## Neural Network
 # Create Adam optimizer
 opt = Adam(learning_rate = 0.01)
@@ -159,7 +158,7 @@ rfc_train_acc = rfc.score(x_train, y_train)
 train_accuracy.append(rfc_train_acc)
 
 print("\nRandom Forest Classifier")
-print("=========================")
+print("========================")
 print("Testing Accuracy :", rfc_acc)
 print("Training Accuracy :", rfc_train_acc)
 
