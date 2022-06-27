@@ -20,7 +20,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn import neighbors
 from sklearn.ensemble import RandomForestClassifier
 
-
 # Initialize lists to store respective performances of each model
 test_accuracy = []
 train_accuracy = []
@@ -55,6 +54,8 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 1)
 # Get input shape
 input_shape = len(x[0])
 
+
+## Neural Network
 # Create Adam optimizer
 opt = Adam(learning_rate = 0.01)
 
