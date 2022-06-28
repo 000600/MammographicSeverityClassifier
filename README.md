@@ -1,7 +1,7 @@
 # Mammographic Severity Classifier
 
 ## The Neural Network
-This nueral network determine the severity (benign or malignant) of a mammographic mass lesion on a pateint. The model will predict a value close to 0 if the mass lesion is predicted to be benign and a 1 if the mass lesion is predicted to be malignant. Since the model only predicts binary categorical values, the model uses a binary crossentropy loss function and has 1 output neuron. The model uses a standard Adam optimizer with a learning rate of 0.01. The model contains an architecture consisting of:
+This neural network determines the severity (benign or malignant) of a mammographic mass lesion on a pateint. The model will predict a value close to 0 if the mass lesion is predicted to be benign and a 1 if the mass lesion is predicted to be malignant. Since the model only predicts binary categorical values, the model uses a binary crossentropy loss function and has 1 output neuron. The model uses a standard Adam optimizer with a learning rate of 0.01. The model contains an architecture consisting of:
 - 1 Batch Normalization layer
 - 1 Input layer (with 6 input neurons and a ReLU activation function)
 - 4 Hidden layers (each with 4 neurons and a ReLU activation function)
