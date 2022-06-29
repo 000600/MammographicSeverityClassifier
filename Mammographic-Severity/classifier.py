@@ -36,7 +36,7 @@ for rows in df.values.tolist():
 smote = SMOTE()
 x, y = smote.fit_resample(x, y)
 
-# Divide the x and y values into three sets: train, test, and validation
+# Divide the x and y values into two sets: train, and test
 x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 1)
 
 # Get input shape
