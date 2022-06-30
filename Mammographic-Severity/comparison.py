@@ -21,7 +21,6 @@ from sklearn import neighbors
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 
-
 # Initialize lists to store respective performances of each model
 test_accuracy = []
 train_accuracy = []
