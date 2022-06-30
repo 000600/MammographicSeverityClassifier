@@ -9,7 +9,7 @@ This neural network determines the severity (benign or malignant) of a mammograp
 
 Feel free to further tune the hyperparameters or build upon the model!
 
-## A Note on Accuracy
+## Other Models
 It should be noted that the neural network (found in the **classifier.py** file) only reaches a testing accuracy of around 85%. Despite hyperparameter tuning (hence a non-standard learning rate of 0.01 and a non-standard batch size of 32), it could not reach test accuracies above 87% (occasionally the model does much worse or better than average). To determine if this issue was only present in the neural network, I tried training other types of models on the same datasets, but, when compared to the neural network, the only models that had similar testing accuracies of around 85%-86% were an SVM (with a linear kernel) and an XGBoost Classifier (with 5000 estimators and a learning rate of 0.001). Overall, the SVM seemed to consistenly have the best test accuracy. The Decision Tree and Random Forest classifiers had the best training accuracies of around 94%, but did not perform as well as the neural network, SVM, or XGBoost Classifier in testing accuracy metrics. The comparison discuseed here can be found in the **comparison.py** file, which will output the respective training and testing accuracies of each model and a graph to compare those accuracies across models. 
 
 The models that were compared on the same data were:
