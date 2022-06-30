@@ -1,9 +1,12 @@
 # Imports
 import tensorflow as tf
-from tensorflow.keras.layers import Dense, BatchNormalization, Dropout
+from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.layers import Dropout
 from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras.losses import SparseCategoricalCrossentropy
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,13 +14,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
-from sklearn.preprocessing import StandardScaler
-from imblearn.over_sampling import SMOTE
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn import neighbors
 from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+
 
 # Initialize lists to store respective performances of each model
 test_accuracy = []
@@ -34,8 +37,11 @@ for col in df.columns:
   if col != 'Severity':
     df[col] = ss.fit_transform(df[[col]])
 
-# Assign x and y values
-y = list(df.pop('Severity'))
+# Assign x and y values (x_xgb and y_xgb are for the XGBoost algorithm because it requires slightly different data shapes)
+y_xgb = df.pop('Severity')
+y = list(y_xgb)
+x_xgb = df
+
 x = []
 for rows in df.values.tolist():
   row = []
@@ -53,7 +59,6 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 1)
 # Get input shape
 input_shape = len(x[0])
 
-## Neural Network
 # Create Adam optimizer
 opt = Adam(learning_rate = 0.01)
 
@@ -91,8 +96,8 @@ train_accuracy.append(float(train_acc))
 
 print("Neural Network")
 print("==============")
-print(f'Testing Accuracy: {test_acc * 100}%')
-print(f'Training Accuracy: {train_acc * 100}%')
+print(f'Testing Accuracy: {test_acc}')
+print(f'Training Accuracy: {train_acc}')
 
 # View performance metrics
 predict = model.predict(x_test)
@@ -112,7 +117,7 @@ test_accuracy.append(dtc_acc)
 dtc_train_acc = dtc.score(x_train, y_train)
 train_accuracy.append(dtc_train_acc)
 
-print("Decision Tree Classifier")
+print("\nDecision Tree Classifier")
 print("========================")
 print("Testing Accuracy :", dtc_acc)
 print("Training Accuracy :", dtc_train_acc)
@@ -157,7 +162,7 @@ rfc_train_acc = rfc.score(x_train, y_train)
 train_accuracy.append(rfc_train_acc)
 
 print("\nRandom Forest Classifier")
-print("========================")
+print("=========================")
 print("Testing Accuracy :", rfc_acc)
 print("Training Accuracy :", rfc_train_acc)
 
@@ -209,11 +214,41 @@ print("Training Accuracy :", knn_train_acc)
 knn_cr = classification_report(knn_pred, y_test)
 print(knn_cr)
 
-# Create bar graph to illustrate training and test accuracy across different models
-n_groups = 6
-objects = ('Neural Network', 'Decision Tree', 'Logistic Regression', 'Random Forest', 'SVM', 'KNN')
+## XGBoost Classifier
+# Balance dataset (make sure there are an even representation of instances with label 1 and label 0)
+smote = SMOTE()
+x, y = smote.fit_resample(x_xgb, y_xgb)
 
-plt.figure(figsize = (10, 7)) # Adjust figure size so that x-axis labels don't overlap
+# Divide the x and y values into three sets: train, test, and validation
+x_train, x_test, y_train, y_test = train_test_split(x, y, random_state = 1)
+
+# Create and train model
+xgb = XGBClassifier(n_estimators = 5000, learning_rate = 0.001)
+xgb.fit(x_train, y_train, early_stopping_rounds = 100, eval_set = [(x_test, y_test)], verbose = 0)
+
+# Get predictions for performance metrics
+predictions = xgb.predict(x_test)
+
+# Add test and train accuracies to appropriate lists
+xgb_acc = xgb.score(x_test, y_test)
+test_accuracy.append(xgb_acc)
+xgb_train_acc = xgb.score(x_train, y_train)
+train_accuracy.append(xgb_train_acc)
+
+print("\nXGBoost Classifier")
+print("==================")
+print("Testing Accuracy :", xgb_acc)
+print("Training Accuracy :", xgb_train_acc)
+
+# Evaluate model
+xgb_cr = classification_report(predictions, y_test)
+print(xgb_cr)
+
+# Create plot
+n_groups = 7
+objects = ('Neural Network', 'Decision Tree', 'Logistic Regression', 'Random Forest', 'SVM', 'KNN', 'XGBoost')
+
+plt.figure(figsize = (12, 8))
 index = np.arange(n_groups)
 bar_width = 0.35
 opacity = 0.8
