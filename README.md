@@ -10,7 +10,7 @@ This neural network determines the severity (benign or malignant) of a mammograp
 Feel free to further tune the hyperparameters or build upon the model!
 
 ## Other Models
-It should be noted that the neural network (found in the **classifier.py** file) only reaches a testing accuracy of around 85%. Despite hyperparameter tuning (hence a non-standard learning rate of 0.01 and a non-standard batch size of 32), it could not reach test accuracies above 87% (occasionally the model does much worse or better than average). To determine if this issue was only present in the neural network, I tried training other types of models on the same datasets, but, when compared to the neural network, the only models that had similar testing accuracies of around 85%-86% were an SVM (with a linear kernel) and an XGBoost Classifier (with 5000 estimators and a learning rate of 0.001). Overall, the SVM seemed to consistently have the best test accuracy. The Decision Tree and Random Forest classifiers had the best training accuracies of around 94%, but did not perform as well as the neural network, SVM, or XGBoost Classifier in testing accuracy metrics. The comparison discuseed here can be found in the **comparison.py** file, which will output the respective training and testing accuracies of each model and a graph to compare those accuracies across models. 
+It should be noted that the neural network (found in the **classifier.py** file) only reaches a testing accuracy of around 85%. Despite hyperparameter tuning (hence a non-standard learning rate of 0.01 and a non-standard batch size of 32), it could not reach test accuracies above 87% (occasionally the model does much worse or better than average). To determine if this issue was only present in the neural network, I tried training other types of models on the same datasets, but, when compared to the neural network, the only models that had similar testing accuracies of around 85%-86% were an SVM (with a linear kernel) and an XGBoost Classifier (with 5000 estimators and a learning rate of 0.001). Overall, the SVM seemed to consistently have the best test accuracy. The Decision Tree and Random Forest classifiers had the best training accuracies of around 94%, but did not perform as well as the neural network, SVM, or XGBoost Classifier in testing accuracy metrics. The comparison discussed here can be found in the **comparison.py** file, which will output the respective training and testing accuracies of each model and a graph to compare those accuracies across models. 
 
 The models that were compared on the same data were:
 - Neural Network
@@ -32,9 +32,7 @@ The dataset can be found at this link: https://www.kaggle.com/datasets/overrated
 Mass shape, mass margin, and mass density are BI-RADS attributes. Note that the initial dataset is unbalanced (this statistic can be found on the data's webpage); it contains 516 instances of benign lesions (encoded as 0's in the model) and 445 instances of malignant lesions (encoded as 1's in the model). This issue is solved within the classifier using SMOTE, which oversamples the minority class within the dataset.
 
 ## Potential Applications
-The neural network, SVM, and other models in this project could hypothetically advise a physician on whether or not to perform a breast biopsy on patient. Misinterpretation of mammographs is the primary cause of unnecessary breast biopsies (biospies that result in benign outcomes). By predicting the severity of a lesion, the models in this project can hypothetically help physicians discern if they should conduct a breast biopsy on a patient; if the models predict values close to 0, they suggest the lesion is likely benign and thus not worthy of a complete biopsy, while if they predict values close to 1, they suggest the lesion is likely malignant and thus worthy of a biopsy.
-
-Note that I do ***not*** recommend or advise the use of any models here in actual medical practice or use.  
+The neural network, SVM, and other models in this project could hypothetically advise a physician on whether or not to perform a breast biopsy on a patient. Misinterpretation of mammographs is the primary cause of unnecessary breast biopsies (biopsies that result in benign outcomes). By predicting the severity of a lesion, the models in this project can hypothetically help physicians discern if they should conduct a breast biopsy on a patient; if the models predict values close to 0, they suggest the lesion is likely benign and thus not worthy of a complete biopsy, while if they predict values close to 1, they suggest the lesion is likely malignant and thus worthy of a biopsy.  
 
 ## Libraries
 This neural network was created with the help of the Tensorflow, Imbalanced-Learn, and Scikit-Learn libraries.
@@ -46,3 +44,6 @@ This neural network was created with the help of the Tensorflow, Imbalanced-Lear
 - Imbalanced-Learn's Installation Instructions: https://pypi.org/project/imbalanced-learn/
 - XGBoost's Website: https://xgboost.readthedocs.io/en/stable/#
 - XGBoost's Installation Instructions: https://xgboost.readthedocs.io/en/stable/install.html
+
+## Disclaimer
+Please note that I do not recommend, endorse, or encourage the use of any of my work here in actual medical use or application in any way.
