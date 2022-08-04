@@ -71,7 +71,7 @@ epochs = 100
 batch_size = 32
 history = model.fit(x, y, epochs = epochs, validation_data = (x_test, y_test), batch_size = batch_size) # To add callbacks add 'callbacks = [early_stopping]'
 
-# Visualize  loss and validation loss
+# Visualize loss and validation loss
 history_dict = history.history
 loss = history_dict['loss']
 val_loss = history_dict['val_loss']
