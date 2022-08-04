@@ -35,7 +35,7 @@ Mass shape, mass margin, and mass density are BI-RADS attributes. Note that the 
 The neural network, SVM, and other models in this project could hypothetically advise a physician on whether or not to perform a breast biopsy on a patient. Misinterpretation of mammographs is the primary cause of unnecessary breast biopsies (biopsies that result in benign outcomes). By predicting the severity of a lesion, the models in this project can hypothetically help physicians discern if they should conduct a breast biopsy on a patient; if the models predict values close to 0, they suggest the lesion is likely benign and thus not worthy of a complete biopsy, while if they predict values close to 1, they suggest the lesion is likely malignant and thus worthy of a biopsy.  
 
 ## Libraries
-This neural network was created with the help of the Tensorflow, Imbalanced-Learn, and Scikit-Learn libraries.
+The neural network and other models were created with the help of the Tensorflow, Imbalanced-Learn, and Scikit-Learn libraries.
 - Tensorflow's Website: https://www.tensorflow.org/
 - Tensorflow Installation Instructions: https://www.tensorflow.org/install
 - Scikit-Learn's Website: https://scikit-learn.org/stable/
