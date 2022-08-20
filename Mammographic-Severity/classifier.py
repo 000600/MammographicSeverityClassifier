@@ -75,10 +75,9 @@ history = model.fit(x, y, epochs = epochs, validation_data = (x_test, y_test), b
 history_dict = history.history
 loss = history_dict['loss']
 val_loss = history_dict['val_loss']
-epoch_list = [i for i in range(epochs)]
 
-plt.plot(epoch_list, loss, label = 'Loss')
-plt.plot(epoch_list, val_loss, label = 'Validation Loss')
+plt.plot(loss, label = 'Loss')
+plt.plot(val_loss, label = 'Validation Loss')
 plt.title('Validation and Training Loss Across Epochs')
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
@@ -89,8 +88,8 @@ plt.show()
 accuracy = history_dict['binary_accuracy']
 val_accuracy = history_dict['val_binary_accuracy']
 
-plt.plot(epoch_list, accuracy, label = 'Training Accuracy')
-plt.plot(epoch_list, val_accuracy, label =' Validation Accuracy')
+plt.plot(accuracy, label = 'Training Accuracy')
+plt.plot(val_accuracy, label =' Validation Accuracy')
 plt.title('Validation and Training Accuracy Across Epochs')
 plt.xlabel('Epochs')
 plt.ylabel('Accuracy')
